@@ -125,7 +125,8 @@ def partl(X_tr,y_tr,X_te,y_te):
     start_time = time.time()
 
     decay_list = [pow(10,-5), 5*pow(10,-5), pow(10,-4)]
-    archs = [[50, 50, 2], [50, 500, 2], [50, 500, 300, 2], [50, 800, 500, 300, 2], [50, 800, 800, 500, 300, 2]]
+    #archs = [[50, 50, 2], [50, 500, 2], [50, 500, 300, 2], [50, 800, 500, 300, 2], [50, 800, 800, 500, 300, 2]]
+    archs = [ [50, 800, 800, 500, 300, 2] ]
     regularization = [pow(10,-7), 5*pow(10,-7), pow(10, -6), 5*pow(10, -6), pow(10, -5)]
 
     results = hw.testmodels(X_tr,y_tr,X_te,y_te, archs, actfn='relu', last_act='softmax', reg_coeffs=regularization,
