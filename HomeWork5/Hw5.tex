@@ -1,0 +1,225 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+ 
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[T1]{fontenc}
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+ 
+\begin{document}
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+ 
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+ 
+%\renewcommand{\qedsymbol}{\filledbox}
+ 
+\title{CSCI 567: Homework 5}%replace X with the appropriate number
+\author{Deepika Anand} %replace with your name
+\maketitle
+ 
+\begin{problem} 1 (a)
+\end{problem}
+\begin{Answer}
+To prove that D is minimized $\mu_{k}$ is the mean, differentiate D with respect to $\mu_{k}$ and equate it to 0
+\begin{equation}
+    \frac {\partial D}{ \partial \mu_{k}} = \frac{\partial}{\partial \mu_{k}} \sum_{n=1}^{N}\sum_{k=1}^{K} r_{nk} ||x_{n} - \mu_{k}|| ^ 2
+\end{equation}
+\begin{equation}
+    \frac {\partial D}{ \partial \mu_{k}} = 
+    \frac{\partial}{\partial \mu_{k}} \sum_{n=1}^{N}\sum_{k=1}^{K} r_{nk}(x_{n} - \mu_{k})^T(x_{n} - \mu_{k})
+\end{equation}
+\begin{equation}
+     \frac {\partial D}{ \partial \mu_{k}} = 
+    \frac{\partial}{\partial \mu_{k}} \sum_{n=1}^{N}\sum_{k=1}^{K} r_{nk}(x_{n}^T - \mu_{k}^T)(x_{n} - \mu_{k})
+\end{equation}
+\begin{equation}
+     \frac {\partial D}{ \partial \mu_{k}} = 
+    \frac{\partial}{\partial \mu_{k}} \sum_{n=1}^{N}\sum_{k=1}^{K} r_{nk} (x_{n}^T x_{n} - x_{n}^T\mu_{k} - x_{n}\mu_{k}^T + \mu_{k}^T\mu_{k})
+\end{equation}
+\begin{equation}
+     \frac {\partial D}{ \partial \mu_{k}} = 
+    \sum_{n=1}^{N} r_{nk}(2\mu_{k} - 2x_{n})
+\end{equation}
+Equating the equation to 0
+\begin{equation}
+     \mu_{k}=\frac{ \sum_{n=1}^{N} r_{nk} x_{n}}{ \sum_{n=1}^{N} r_{nk} }
+\end{equation}
+Hence D is minimized when $\mu_{k}$ is the mean of points
+\end{Answer}
+
+\begin{problem} 1 (b)
+\end{problem}
+\begin{Answer}
+\end{Answer}
+
+\begin{problem} 1 (c) (a)
+\end{problem}
+\begin{Answer}
+\begin{equation}
+    \tilde{D}=\sum_{n=1}^{N}\sum_{k=1}^{K} r_{nk} ||\phi(x_{n}) - \tilde{\mu_{k}}||^2
+\end{equation}
+where 
+\begin{equation}
+   \tilde{\mu_{k}} = \frac{\sum_{i=1}^{N} \phi(x_{i})}{\sum_{n=1}^{N} r_{nk}}
+\end{equation}
+\begin{equation}
+   \tilde{D}=\sum_{n=1}^{N}\sum_{k=1}^{K} r_{nk} (\phi(x_{n}) -  \frac{\sum_{i=1}^{N} \phi(x_{i})}{\sum_{n=1}^{N} r_{nk}})^T(x_{n} -  \frac{\sum_{i=1}^{N} \phi(x_{i})}{\sum_{n=1}^{N} r_{nk}})
+\end{equation}
+\begin{equation}
+    \tilde{D}=\sum_{n=1}^{N}\sum_{k=1}^{K} r_{nk}(\phi(x_{n})^T\phi(x_{n}) - \frac{2\sum_{i=1}^{N} \phi(x_{n})^T \phi(x_{i})}{\sum_{n=1}^{N} r_{nk}} + \sum_{i=1}^{N} \frac{\phi(x_{i})^T \phi(x_{i})}{(\sum_{n=1}^{N} r_{nk})^2})
+\end{equation}
+
+\begin{equation}
+    \tilde{D}=\sum_{n=1}^{N}\sum_{k=1}^{K} r_{nk}(k(x_{n}, x_{n})) - \frac{2\sum_{i=1}^{N} k(x_{i}, x_{n})}{\sum_{n=1}^{N} r_{nk}} + \sum_{i=1}^{N} \frac{k(x_{i}, x_{i})}{(\sum_{n=1}^{N} r_{nk})^2})
+\end{equation}
+
+Hence, we can show $\tilde{D}$ can be represented only in the form of $k(x_{i}, x_{j}) = \phi(x_{i})^T \phi(x_{j})$
+\end{Answer}
+
+\begin{problem} 1 (c) (b)
+\end{problem}
+\begin{Answer}
+When we are given a data point $x_{n}$ we select arg $j$ such that cluster $k =$ arg min $(|| x_{n} - \mu_{j}||)_2^2$. Replacing $\mu_{j} =\frac{\sum_{x_{n} \in C_{j}} \phi(x_{n})}{| x_{n} \in C_{j}| } $
+\begin{equation}
+    = arg min_{j} [ \phi(x)^T\phi(x) - \frac{2\sum_{x_{n} \in C_{j}} \phi(x_{n})^T\phi(x)}{| x_{n} \in C_{j}|} + \frac{\sum_{x_{n} \in C_{j}} \phi(x_{n})^T\phi(x_{n})}{| x_{n} \in C_{j}|^2}]
+\end{equation}
+Replacing with $k(x_{i}, x_{j}) = \phi(x_{i})^T\phi(x_{j})$
+\begin{equation}
+    k = arg min_{j}[ k(x, x) - \frac{2\sum_{x_{n} \in C_{j}} k(x_{n}, x)}{| x_{n} \in C_{j}|} +  \frac{\sum_{x_{n} \in C_{j}} k(x_{n}, x_{n})}{| x_{n} \in C_{j}|^2}]
+\end{equation}
+Hence, 
+\begin{equation}
+    \mu_{k} = arg min_{j}[ k(x, x) - \frac{2\sum_{x_{n} \in C_{j}} k(x_{n}, x)}{| x_{n} \in C_{j}|} +  \frac{\sum_{x_{n} \in C_{j}} k(x_{n}, x_{n})}{| x_{n} \in C_{j}|^2}]
+\end{equation}
+\end{Answer}
+
+\begin{problem} 1 (c) (c)
+\end{problem}
+\begin{Answer}
+\textbf{Pseudo code for kernel k-means}
+\begin{verbatim}
+    1. C_{1}, C_{2},....., C_{k} <- Assign random centers
+    2. for x_{n} \n Input data
+        for c in [C_{1}, C_{2},....., C_{k}]
+            2.1 Compute ||\phi(x_{n} - \mu_{k}) distance using equation (11)
+        Assign cluster with minimum distance, k to C*(x_{n})
+    3. If converged:
+        return Clusters
+       else:
+        Go back to Step 2  
+\end{verbatim}
+\end{Answer}
+
+\begin{problem} 2
+\end{problem}
+\begin{Answer}
+Putting, $\mu_{1} = 0$ and $\sigma^2=1$ in Gaussian equation for $p(x_{1}|\theta=\theta_{1})$
+\begin{equation}
+p(x=x_{1}|\theta=\theta_{1}) = \frac {e^{-x_{1}/2}}{\sqrt {2*\pi}}    
+\end{equation}
+
+Putting, $\mu_{1} = 0$ and $\sigma^2=0.5$ in Gaussian equation for $p(x=x_{1}|\theta=\theta_{2})$
+\begin{equation}
+p(x=x_{1}|\theta=\theta_{2}) = \frac {e^{-x_{1}/0.25}}{\sqrt {2*\pi}}   
+\end{equation}
+
+\begin{equation}
+p(x) = (\alpha) * p(x=x_{1}|\theta=\theta_{1}) + (1 - \alpha) * (p(x=x_{1}|\theta=\theta_{2}))
+\end{equation}
+Likelihood will be given as , 
+\begin{equation}
+log p(x) = log \alpha - log \sqrt{2*\pi} - \frac{x_{1}}{2} + log (1 - \alpha) - log \sqrt{2*\pi} - \frac{x_{1}}{0.25}
+\end{equation}
+Now differentiating the above equation wrt $\alpha$, we get 
+\begin{equation}
+ = \frac{1}{\alpha} - \frac{1}{ 1 - \alpha}
+\end{equation}
+Equating the equation equal to 0, we get $\alpha = 0.5$
+\end{Answer}
+
+\begin{problem} 3 (a)
+\end{problem}
+\begin{Answer}
+\end{Answer}
+
+\begin{problem} 3 (b)
+\end{problem}
+\begin{Answer}
+\end{Answer}
+
+\begin{problem} 4.1
+\end{problem}
+\begin{Answer}
+Imported data : Circle.csv had shape of (500, 2) \\
+Blob.csv had shape of (600, 2)
+\end{Answer}
+
+\begin{problem} 4.2
+\end{problem}
+\begin{Answer}
+k-means fails to separate the two circles in $circle.csv$ because the assumption was made that data is linearly separable however that was not the case. so we need to map data set to higher dimension so that they can be separated using hyperplane.
+\end{Answer}
+
+\begin{problem} 4.3
+\end{problem}
+\begin{Answer}
+Kernel 
+\begin{equation}
+K(x_{i}, x_{j}) = \sqrt{\sum x_{i}^2}  *  \sqrt{\sum x_{j}^2}
+\end{equation}
+\end{Answer}
+
+\begin{problem} 4.4
+\end{problem}
+\begin{Answer}
+$\mu_{1}$ = (-0.32536411,  0.97109313)\\
+$\mu_{2}$ = (0.75896585,  0.67976677)\\
+$\mu_{3}$ = (-0.63954432,  1.47408141)\\
+$\sigma_{1}$ = 
+\begin{verbatim}
+    0.03609241,  0.01482509
+    0.01482509,  0.01635765
+\end{verbatim}
+
+$\sigma_{2}$ = 
+\begin{verbatim}
+    0.02730268, -0.00844004
+   -0.00844004,  0.04064383
+\end{verbatim}
+
+$\sigma_{3}$ = 
+\begin{verbatim}
+    0.0360839 ,  0.01557532
+    0.01557532,  0.0196006
+\end{verbatim}
+\end{Answer}
+\end{document}
